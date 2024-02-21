@@ -36,8 +36,9 @@ public:
   virtual void OnNewDepthFrame();
 
   /// \brief Helper function to fill the pointcloud information
-  bool FillPointCloudHelper(sensor_msgs::PointCloud2 &point_cloud_msg, uint32_t rows_arg,
-                            uint32_t cols_arg, uint32_t step_arg, void *data_arg);
+  bool FillPointCloudHelper(sensor_msgs::PointCloud2 &point_cloud_msg,
+                            uint32_t rows_arg, uint32_t cols_arg,
+                            uint32_t step_arg, void *data_arg);
 
   /// \brief Callback that publishes a received Camera Frame as an
   /// ImageStamped message.
@@ -63,8 +64,8 @@ protected:
 
   /// \brief ROS image messages
 protected:
-  sensor_msgs::Image image_msg_, depth_msg_;
+  sensor_msgs::Image image_msg_, depth_msg_, image_msg2_;
   sensor_msgs::PointCloud2 pointcloud_msg_;
 };
-}
+} // namespace gazebo
 #endif /* _GAZEBO_ROS_REALSENSE_PLUGIN_ */

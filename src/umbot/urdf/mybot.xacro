@@ -194,27 +194,40 @@
   <!--   <origin rpy="0 0 0 " xyz="0.10 0 0.025" /> -->
   <!-- </xacro:realsense_d435> -->
 
-  <xacro:sensor_d455 name="camera" parent="base_link">
+  <!-- <xacro:sensor_d455 name="camera" parent="base_link"> -->
+  <!--   <origin xyz="0.1 0 0.025" rpy="0 0 0" /> -->
+  <!-- </xacro:sensor_d455> -->
+
+  <xacro:arg name="use_nominal_extrinsics" default="false" />
+  <xacro:arg name="add_plug" default="false" />
+  <xacro:arg name="use_mesh" default="true" />
+  <xacro:arg name="name" default="camera" />
+  <xacro:arg name="topics_ns" default="camera" />
+  <xacro:arg name="publish_pointcloud" default="true" />
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  <xacro:sensor_d435 parent="base_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)"
+    add_plug="$(arg add_plug)" use_mesh="$(arg use_mesh)" name="$(arg name)"
+    topics_ns="$(arg topics_ns)" publish_pointcloud="$(arg publish_pointcloud)">
     <origin xyz="0.1 0 0.025" rpy="0 0 0" />
-  </xacro:sensor_d455>
+  </xacro:sensor_d435>
 
 
   <!-- lidar sensor -->
-  <link name="lidar">
-    <visual>
-      <geometry>
-        <box size="0.05 0.05 0.05" />
-      </geometry>
-      <material name="white">
-        <color rgba="1 1 1 1 " />
-      </material>
-    </visual>
-  </link>
-
-  <joint name="lidar_joint" type="fixed">
-    <parent link="base_link" />
-    <child link="lidar" />
-    <origin xyz="0.10 0 0.065" />
-  </joint>
+  <!-- <link name="lidar"> -->
+  <!--   <visual> -->
+  <!--     <geometry> -->
+  <!--       <box size="0.05 0.05 0.05" /> -->
+  <!--     </geometry> -->
+  <!--     <material name="white"> -->
+  <!--       <color rgba="1 1 1 1 " /> -->
+  <!--     </material> -->
+  <!--   </visual> -->
+  <!-- </link> -->
+  <!---->
+  <!-- <joint name="lidar_joint" type="fixed"> -->
+  <!--   <parent link="base_link" /> -->
+  <!--   <child link="lidar" /> -->
+  <!--   <origin xyz="0.10 0 0.065" /> -->
+  <!-- </joint> -->
 
 </robot>
