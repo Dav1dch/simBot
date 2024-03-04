@@ -63,13 +63,14 @@ void LivoxPointsPlugin::Load(gazebo::sensors::SensorPtr _parent,
 
   raySensor = _parent;
   auto sensor_pose = raySensor->Pose();
-  SendRosTf(sensor_pose, raySensor->ParentName(), raySensor->Name());
+  // SendRosTf(sensor_pose, raySensor->ParentName(), raySensor->Name());
 
   node = transport::NodePtr(new transport::Node());
   node->Init(raySensor->WorldName());
   scanPub = node->Advertise<msgs::LaserScanStamped>(_parent->Topic(), 50);
 
-  ROS_INFO_STREAM("scan topic name:" << _parent->Topic());
+  ROS_INFO_STREAM("raySensor parent name:" << raySensor->ParentName());
+  ROS_INFO_STREAM("raysensor name:" << raySensor->Name());
 
   aviaInfos.clear();
   convertDataToRotateInfo(datas, aviaInfos);
@@ -124,6 +125,7 @@ void LivoxPointsPlugin::OnNewLaserScans() {
     msgs::LaserScan *scan = laserMsg.mutable_scan();
     InitializeScan(scan);
 
+    // ROS_INFO_STREAM("parent pose:" << parentEntity->WorldPose());
     // SendRosTf(parentEntity->WorldPose(), world->Name(),
     //           raySensor->ParentName());
     // SendRosTf(parentEntity->WorldPose(), "base_link", raySensor->Name());
