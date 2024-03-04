@@ -1,0 +1,20 @@
+digraph G {
+"base_link" -> "livox_base"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"base_footprint" -> "base_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "imu"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_link" -> "umbot_color_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_bottom_screw_frame" -> "umbot_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_color_frame" -> "umbot_color_optical_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_link" -> "umbot_depth_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_depth_frame" -> "umbot_depth_optical_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_link" -> "umbot_infra1_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_infra1_frame" -> "umbot_infra1_optical_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_link" -> "umbot_infra2_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"umbot_infra2_frame" -> "umbot_infra2_optical_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "umbot_bottom_screw_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 40.982 sec old)\nBuffer length: 0.000 sec\n"];
+"livox_base" -> "laser_livox"[label="Broadcaster: /gazebo\nAverage rate: 10.578 Hz\nMost recent transform: 40.885 ( 0.097 sec old)\nBuffer length: 1.418 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 40.982"[ shape=plaintext ] ;
+ }->"base_footprint";
+}

@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
-<robot name="mybot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="mybot" xmlns:xacro="http://ros.org/wiki/xacro" >
+
   <xacro:include filename="$(find realsense2_description)/urdf/_d455.urdf.xacro" />
   <xacro:include filename="$(find umbot)/urdf/mybot.gazebo.xacro" />
 
   <link name="base_footprint" />
 
-  <joint name="base_joint" type="fixed">
+  <joint name="base_link_footprint" type="fixed">
+    <axis xyz="0 0 0" />
     <parent link="base_footprint" />
     <child link="base_link" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
+    <origin rpy="0 0 0" xyz=" 0 0 0" />
   </joint>
+
 
   <link name="base_link">
     <inertial>
@@ -36,6 +39,7 @@
     </collision>
 
   </link>
+
 
   <link name="right_wheel_link">
     <inertial>
@@ -172,31 +176,8 @@
     <origin xyz="0.08 0 0.025" />
   </joint>
 
-  <!-- camera sensor -->
-  <!-- <link name="camera"> -->
-  <!--   <visual> -->
-  <!--     <geometry> -->
-  <!--       <box size="0.02 0.08 0.03" /> -->
-  <!--     </geometry> -->
-  <!--     <material name="white"> -->
-  <!--       <color rgba="1 1 1 1 " /> -->
-  <!--     </material> -->
-  <!--   </visual> -->
-  <!-- </link> -->
-  <!---->
-  <!-- <joint name="camera_joint" type="fixed"> -->
-  <!--   <parent link="base_link" /> -->
-  <!--   <child link="camera" /> -->
-  <!--   <origin xyz="0.10 0 0.025" /> -->
-  <!-- </joint> -->
 
-  <!-- <xacro:realsense_d435 sensor_name="d435" parent_link="base_link" rate="10"> -->
-  <!--   <origin rpy="0 0 0 " xyz="0.10 0 0.025" /> -->
-  <!-- </xacro:realsense_d435> -->
 
-  <!-- <xacro:sensor_d455 name="camera" parent="base_link"> -->
-  <!--   <origin xyz="0.1 0 0.025" rpy="0 0 0" /> -->
-  <!-- </xacro:sensor_d455> -->
 
   <xacro:arg name="use_nominal_extrinsics" default="false" />
   <xacro:arg name="add_plug" default="false" />
@@ -208,26 +189,32 @@
   <xacro:sensor_d435 parent="base_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)"
     add_plug="$(arg add_plug)" use_mesh="$(arg use_mesh)" name="$(arg name)"
     topics_ns="$(arg topics_ns)" publish_pointcloud="$(arg publish_pointcloud)">
-    <origin xyz="0.1 0 0.025" rpy="0 0 0" />
-  </xacro:sensor_d435>
+  <origin xyz="0.1 0 0.025" rpy="0 0 0" />
+</xacro:sensor_d435>
+
+<link name="laser_livox">
+  <xacro:null_inertial/>
+  <visual> 
+    <origin xyz="0.00 0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://livox_laser_simulation/meshes/livox_mid40.dae">
+      </mesh>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry> 
+      <mesh filename="package://livox_laser_simulation/meshes/livox_mid40.dae"/> 
+    </geometry>
+  </collision>
+</link>
+
+<joint name="$livox_to_base_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="laser_livox"/>
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.05"/>
+</joint>
 
 
-  <!-- lidar sensor -->
-  <!-- <link name="lidar"> -->
-  <!--   <visual> -->
-  <!--     <geometry> -->
-  <!--       <box size="0.05 0.05 0.05" /> -->
-  <!--     </geometry> -->
-  <!--     <material name="white"> -->
-  <!--       <color rgba="1 1 1 1 " /> -->
-  <!--     </material> -->
-  <!--   </visual> -->
-  <!-- </link> -->
-  <!---->
-  <!-- <joint name="lidar_joint" type="fixed"> -->
-  <!--   <parent link="base_link" /> -->
-  <!--   <child link="lidar" /> -->
-  <!--   <origin xyz="0.10 0 0.065" /> -->
-  <!-- </joint> -->
-
-</robot>
+  </robot>
